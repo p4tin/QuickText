@@ -19,18 +19,22 @@ struct QuickTextApp: App {
         Window("Welcome", id: "welcome") {
             WelcomeView()
         }
-        .windowResizability(.contentSize)
-        .restorationBehavior(.disabled)
+        .defaultLaunchBehavior(.suppressed)
+//        .windowResizability(.contentSize)
+//        .restorationBehavior(.disabled)
 
         Window("About QuickText", id: "about") {
             AboutView()
         }
-        .windowResizability(.contentSize)
-        .restorationBehavior(.disabled)
+        .defaultLaunchBehavior(.suppressed)
+//        .windowResizability(.contentSize)
+//        .restorationBehavior(.disabled)
 
         Settings {
             SettingsView()
         }
-        .restorationBehavior(.disabled)
+        .defaultLaunchBehavior(.suppressed)
+//        .restorationBehavior(.disabled)
+        
     }
 }

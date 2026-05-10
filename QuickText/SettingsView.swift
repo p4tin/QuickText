@@ -2,7 +2,7 @@ import SwiftUI
 import KeyboardShortcuts
 
 struct SettingsView: View {
-    @State private var launchManager = LaunchManager()
+    @StateObject private var launchManager = LaunchManager()
     
     // Preferences persisted automatically to macOS UserDefaults
     @AppStorage("stayOnTop") private var stayOnTop = true

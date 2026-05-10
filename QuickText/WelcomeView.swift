@@ -3,7 +3,7 @@ import KeyboardShortcuts
 import AppKit
 
 struct WelcomeView: View {
-    @State private var launchManager = LaunchManager()
+    @StateObject private var launchManager = LaunchManager()
     
     // ---- FIX: Use the same UserDefaults key as WindowManager ----
     @AppStorage("showWelcomeOnStartup") private var showWelcome = false
