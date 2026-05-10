@@ -1,32 +1,36 @@
-//
-//  QuickTextApp.swift
-//  QuickText
-//
-//  Created by Paul Fortin on 5/6/26.
-//
-
 import SwiftUI
 import SwiftData
+import KeyboardShortcuts
+import Combine
 
 @main
 struct QuickTextApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+    init() {
+        _ = WindowManager.shared
+        
+        KeyboardShortcuts.onKeyDown(for: .toggleQuickText) {
+            WindowManager.shared.toggleWindow()
         }
-    }()
+        
+        UserDefaults.standard.set(false, forKey: "NSQuitAlwaysKeepsWindows")
+    }
 
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Window("Welcome", id: "welcome") {
+            WelcomeView()
         }
-        .modelContainer(sharedModelContainer)
+        .windowResizability(.contentSize)
+        .restorationBehavior(.disabled)
+
+        Window("About QuickText", id: "about") {
+            AboutView()
+        }
+        .windowResizability(.contentSize)
+        .restorationBehavior(.disabled)
+
+        Settings {
+            SettingsView()
+        }
+        .restorationBehavior(.disabled)
     }
 }
