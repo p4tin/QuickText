@@ -72,6 +72,11 @@ struct SettingsView: View {
     private func openFontPicker() {
         let fontManager = NSFontManager.shared
         fontManager.target = WindowManager.shared
+        
+        // Tell the font panel what our current font is
+        let currentFont = NSFont(name: fontName, size: CGFloat(fontSize)) ?? .systemFont(ofSize: CGFloat(fontSize))
+        fontManager.setSelectedFont(currentFont, isMultiple: false)
+        
         let fontPanel = fontManager.fontPanel(true)
         fontPanel?.makeKeyAndOrderFront(nil)
     }

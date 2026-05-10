@@ -139,10 +139,21 @@ class WindowManager: NSObject {
     
     // FIX: The correct way to handle NSFontManager changes
     @objc func changeFont(_ sender: Any?) {
-        if let font = NSFontManager.shared.selectedFont {
-            UserDefaults.standard.set(font.fontName, forKey: "fontName")
-            UserDefaults.standard.set(font.pointSize, forKey: "fontSize")
-        }
+        guard let fontManager = sender as? NSFontManager else { return }
+        
+        // 1. Read current font from UserDefaults
+        let currentFontName = UserDefaults.standard.string(forKey: "fontName") ?? "Helvetica"
+        let currentFontSize = UserDefaults.standard.double(forKey: "fontSize")
+        let size = currentFontSize > 0 ? CGFloat(currentFontSize) : 13.0
+        
+        let currentFont = NSFont(name: currentFontName, size: size) ?? NSFont.systemFont(ofSize: size)
+        
+        // 2. Ask the font manager to convert our current font to the user's new selection
+        let newFont = fontManager.convert(currentFont)
+        
+        // 3. Save back to AppStorage/UserDefaults
+        UserDefaults.standard.set(newFont.fontName, forKey: "fontName")
+        UserDefaults.standard.set(Double(newFont.pointSize), forKey: "fontSize")
     }
     
     // MARK: - Public helper (optional)
