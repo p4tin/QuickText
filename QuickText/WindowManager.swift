@@ -104,7 +104,7 @@ class WindowManager: NSObject {
     private func createPanel() {
         let newPanel = NSPanel(
             contentRect: NSRect(x: 0, y: 0, width: 400, height: 300),
-            styleMask: [.nonactivatingPanel, .resizable, .titled, .fullSizeContentView],
+            styleMask: [.nonactivatingPanel, .resizable, .titled, .fullSizeContentView, .closable, .miniaturizable],
             backing: .buffered,
             defer: false
         )
