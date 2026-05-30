@@ -109,6 +109,8 @@ class WindowManager: NSObject {
             defer: false
         )
         
+        newPanel.title = "QuickText"
+        
         newPanel.isFloatingPanel = true
         newPanel.level = .floating
         newPanel.isMovableByWindowBackground = true
