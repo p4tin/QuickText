@@ -54,7 +54,7 @@ struct ContentView: View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selectedNoteID: $selectedNoteID)
         } detail: {
-            NoteEditorView(note: selectedNote)
+            NoteEditorView(note: selectedNote, selectedNoteID: $selectedNoteID)
         }
         .onAppear {
             columnVisibility = sidebarVisible ? .all : .detailOnly

@@ -66,3 +66,17 @@ func pruneEmptyFolders(context: ModelContext) {
         }
     }
 }
+
+/// Picks a fallback selection after a bulk change (delete, restore-from-
+/// backup): the first remaining root-level note, by `sortIndex`. If no
+/// notes remain anywhere, first creates a new default root note (via
+/// `ensureDefaultNoteExists`) so the app is never left with zero notes and
+/// a nil selection.
+func resolveFallbackSelection(context: ModelContext) -> UUID? {
+    ensureDefaultNoteExists(context: context)
+    let freshNotes = (try? context.fetch(FetchDescriptor<Note>())) ?? []
+    return freshNotes
+        .filter { $0.parentFolder == nil }
+        .sorted { $0.sortIndex < $1.sortIndex }
+        .first?.id
+}

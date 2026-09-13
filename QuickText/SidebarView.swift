@@ -207,18 +207,8 @@ struct SidebarView: View {
         }
     }
 
-    /// Picks a fallback selection: the first remaining root-level note (by
-    /// `sortIndex`). If no notes remain anywhere, first creates a new
-    /// default root note (via `ensureDefaultNoteExists`) so the app is never
-    /// left with zero notes and a nil selection, then selects that.
     private func resolveSelectionAfterDeletion() {
-        ensureDefaultNoteExists(context: modelContext)
-        let freshNotes = (try? modelContext.fetch(FetchDescriptor<Note>())) ?? []
-        let firstRootNote = freshNotes
-            .filter { $0.parentFolder == nil }
-            .sorted { $0.sortIndex < $1.sortIndex }
-            .first
-        selectedNoteID = firstRootNote?.id
+        selectedNoteID = resolveFallbackSelection(context: modelContext)
     }
 
     private func folderDeleteTitle(_ folder: Folder) -> String {
