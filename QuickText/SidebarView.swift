@@ -76,16 +76,14 @@ private func performSidebarDrop(
 /// Sidebar tree of notes and folders, with creation, rename, delete, and
 /// drag & drop UI.
 ///
-/// This is Wave 3 of the multi-notes feature. Task 7 added the "+" toolbar
-/// menu for creating notes/folders and the "currently active folder"
-/// tracking. Task 8 added inline rename for folders (double-click a
-/// folder's name) and delete via context menu (note and folder rows), gated
-/// by a confirmation dialog, with sensible selection fallback when the
-/// deleted note (or the folder containing it) was the one open in the
-/// editor. Task 9 (this file, current state) adds drag & drop reorganizing:
-/// note and folder rows are draggable, folder rows and the sidebar's own
-/// root/background area are valid drop destinations that reparent the
-/// dragged item there.
+/// New notes/folders are created via a right-click context menu on the
+/// sidebar's empty background (always at root — see `createNewNote`).
+/// Folders support inline rename (double-click) and delete via their own
+/// context menu (note rows have one too), gated by a confirmation dialog,
+/// with sensible selection fallback when the deleted note (or the folder
+/// containing it) was the one open in the editor. Note and folder rows are
+/// also draggable; folder rows and the sidebar's own root/background area
+/// are valid drop destinations that reparent the dragged item there.
 struct SidebarView: View {
     @Query(filter: #Predicate<Folder> { $0.parent == nil }, sort: \Folder.sortIndex)
     private var rootFolders: [Folder]
@@ -126,19 +124,15 @@ struct SidebarView: View {
             // folder row) moves the dragged item(s) to the root level.
             performSidebarDrop(payloads, into: nil, context: modelContext)
         }
-        .toolbar {
-            ToolbarItem {
-                Menu {
-                    Button("New Note") {
-                        createNewNote()
-                    }
-                    Button("New Folder") {
-                        createFolder(in: nil, context: modelContext)
-                    }
-                } label: {
-                    Image(systemName: "plus")
-                }
-                .help("New Note or Folder")
+        .contextMenu {
+            // Right-clicking the sidebar's empty background (not a note/
+            // folder row — those have their own "Delete" context menu)
+            // offers item creation instead of the old "+" toolbar menu.
+            Button("New Note") {
+                createNewNote()
+            }
+            Button("New Folder") {
+                createFolder(in: nil, context: modelContext)
             }
         }
         .confirmationDialog(

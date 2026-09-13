@@ -10,7 +10,8 @@ no save button, no "unsaved changes" state, ever.
   floats above everything (including full-screen apps) and follows you
   across Spaces.
 - **Notes organized into folders** — a sidebar tree with drag-and-drop
-  reorganizing, inline rename, and delete.
+  reorganizing, inline rename, and delete. Right-click the sidebar's empty
+  background to create a new note or folder.
 - **Backup / Restore** — since there's no undo or trash, "Backup…" (gear
   menu, bottom of the editor) snapshots every note and folder to a
   `.tar.gz` file; "Restore…" replaces the entire tree from one. This is the
