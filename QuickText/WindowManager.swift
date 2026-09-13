@@ -123,8 +123,8 @@ class WindowManager: NSObject {
         newPanel.backgroundColor = .clear
         
         let contentView = ContentView()
-            .modelContainer(for: Note.self)
-        
+            .modelContainer(for: [Note.self, Folder.self])
+
         newPanel.contentView = NSHostingView(rootView: contentView)
         self.panel = newPanel
     }

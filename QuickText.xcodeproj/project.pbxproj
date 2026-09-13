@@ -7,18 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		544955D52FAF799A0038623E /* GEMINI.md in Resources */ = {isa = PBXBuildFile; fileRef = 544955D42FAF798F0038623E /* GEMINI.md */; };
+		544955D52FAF799A0038623E /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 544955D42FAF798F0038623E /* CLAUDE.md */; };
 		54F1CE802FAB6292006DFFDA /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 54F1CE7F2FAB6292006DFFDA /* KeyboardShortcuts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		544955D42FAF798F0038623E /* GEMINI.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GEMINI.md; sourceTree = "<group>"; };
+		544955D42FAF798F0038623E /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		54F1CE612FAB5EED006DFFDA /* QuickText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		54F1CE802FAB5EED006DFFDA /* Exceptions for "QuickText" folder in "QuickText" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SupplementaryInfo.plist,
+			);
+			target = 54F1CE602FAB5EED006DFFDA /* QuickText */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		54F1CE632FAB5EED006DFFDA /* QuickText */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				54F1CE802FAB5EED006DFFDA /* Exceptions for "QuickText" folder in "QuickText" target */,
+			);
 			path = QuickText;
 			sourceTree = "<group>";
 		};
@@ -39,7 +52,7 @@
 		54F1CE582FAB5EED006DFFDA = {
 			isa = PBXGroup;
 			children = (
-				544955D42FAF798F0038623E /* GEMINI.md */,
+				544955D42FAF798F0038623E /* CLAUDE.md */,
 				54F1CE632FAB5EED006DFFDA /* QuickText */,
 				54F1CE622FAB5EED006DFFDA /* Products */,
 			);
@@ -121,7 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				544955D52FAF799A0038623E /* GEMINI.md in Resources */,
+				544955D52FAF799A0038623E /* CLAUDE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +281,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickText/SupplementaryInfo.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,6 +314,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickText/SupplementaryInfo.plist;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
